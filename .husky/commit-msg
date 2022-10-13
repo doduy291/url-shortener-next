@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+BCyan='\033[1;36m'    
+BGreen='\033[1;32m'   
+NC='\e[0m'
+
+echo -e "${BGreen}***** Running commit-msg (${BCyan}Commitlint${BGreen}) checks... *****${NC}"
+
+npx --no -- commitlint --edit --color 
+
+echo -e "${BGreen}>>> DONE ✅ <<<${NC}"
