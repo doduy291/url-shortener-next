@@ -22,6 +22,11 @@ const getUrl = async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
 
+  res.setHeader("Content-Type", "application/json");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  // Edge Function
+  // https://vercel.com/guides/how-to-configure-the-cache-control-response-header-in-vercel-projects
+  res.setHeader("Cache-Control", "s-maxage=86400, stale-while-revalidate");
   return res.json(data);
 };
 export default getUrl;
