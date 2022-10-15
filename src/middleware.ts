@@ -1,15 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {
-  console.log(req.nextUrl.pathname);
-  // if (req.nextUrl.pathname.startsWith("/api/get-url/")) {
-  //   return;
-  // }
-  const slug = req.nextUrl.pathname.split("/").pop();
+  if (req.nextUrl.pathname === "/") {
+    return;
+  }
 
-  const data = await (
-    await fetch(`${req.nextUrl.origin}/api/get-url/${slug}`)
-  ).json();
+  const slug = req.nextUrl.pathname.split("/").pop();
+  const res = await fetch(`${req.nextUrl.origin}/api/get-url/${slug}`);
+
+  const data = await res.json();
 
   if (data?.url) {
     return NextResponse.redirect(data.url);
@@ -18,9 +17,7 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    //  Match all request paths except for the ones starting with:
-    //  - static (static files)
-    //  - favicon.ico (favicon file)
-    "/((?!static|favicon.ico).*)",
+    // Except for the ones starting with (use negative lookhead regex):
+    "/((?!static|favicon.ico|_next).*)",
   ],
 };
