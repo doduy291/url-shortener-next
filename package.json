@@ -10,8 +10,10 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@fingerprintjs/fingerprintjs": "^3.3.6",
     "@prisma/client": "^4.4.0",
     "next": "12.2.0",
+    "next-seo": "^5.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
