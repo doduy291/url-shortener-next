@@ -1,0 +1,51 @@
+.header {
+  position: absolute;
+  top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 5rem;
+}
+
+.container {
+  position: relative;
+}
+
+.left {
+  position: relative;
+}
+
+.right {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.5625em;
+  font-weight: 800;
+}
+
+.button {
+  padding: 1rem 2rem;
+  color: #fff;
+  cursor: pointer;
+  background-color: #766fde;
+  border-radius: 12px;
+
+  &:hover {
+    background-color: #8a84eb;
+  }
+}
+
+.button__text {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline #8a84eb 2px;
+    text-underline-position: under;
+  }
+}
