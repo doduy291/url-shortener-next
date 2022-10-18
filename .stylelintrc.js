@@ -367,6 +367,7 @@ module.exports = {
     "declaration-empty-line-before": null,
     "declaration-block-no-redundant-longhand-properties": null,
     "selector-class-pattern": null,
+    "import-notation": null,
     indentation: null,
     "selector-list-comma-newline-after": "always-multi-line",
     "order/properties-order": [propertyOrder],
