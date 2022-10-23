@@ -1,15 +1,15 @@
 import type { NextPage } from "next";
 import Layout from "../components/Layout";
 import Meta from "../components/Meta";
-import styles from "../styles/home.module.scss";
+import Home from "../templates/Home";
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
   return (
     <Layout>
       <Meta title="Url Shortener Next" description="Generated url shortner" />
-      <main className={styles.main}>TEST</main>
+      <Home />
     </Layout>
   );
 };
 
-export default Home;
+export default HomePage;
