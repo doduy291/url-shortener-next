@@ -1,0 +1,64 @@
+@use "sass:meta";
+@use "sass:map";
+@use "sass:string";
+@use "sass:list";
+
+// /*  Mobile: width <= 30em (480px) */
+// @mixin mobile {
+//   @media only screen and (max-width: $mobile) {
+//     @content;
+//   }
+// }
+
+// /* Tablet: 30.0625em (481px) <= width <= 48em (768px) */
+// @mixin tablet {
+//   @media only screen and (min-width: calc($mobile + 0.0625em)) and (max-width: $tablet) {
+//     @content;
+//   }
+// }
+
+// /* Desktop: 48.0625em (769px) <= width <= 80em (1280px) */
+// @mixin desktop {
+//   @media only screen and (min-width: calc($tablet + 0.0625em)) {
+//     @content;
+//   }
+// }
+
+// /* Large desktop: width >= 80.0625em (1281px) */
+// @mixin large-desktop {
+//   @media only screen and (min-width: calc($desktop + 0.0625em)) {
+//     @content;
+//   }
+// }
+
+@mixin media($params...) {
+  $query: create-media-query($params);
+
+  @media only screen and #{$query} {
+    @content;
+  }
+}
+
+@function create-media-query($data) {
+  $list-width: meta.keywords($data);
+  $query: "";
+  $properties: (
+    "max": "max-width",
+    "min": "min-width",
+  );
+
+  @each $key, $value in $list-width {
+    $property-value: map.get($properties, $key);
+
+    @if string.length($query) != 0 {
+      $query: $query + " and ";
+    }
+
+    // If exists statement
+    @if string.index($query, $property-value) != 1 {
+      $query: $query + "(#{$property-value}: #{$value})";
+    }
+  }
+
+  @return $query;
+}

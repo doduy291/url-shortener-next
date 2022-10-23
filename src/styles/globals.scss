@@ -1,18 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800&display=swap");
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-
-  font-family: "Raleway", sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
+@import "base";
+@import "variables";
+@import "mixins";
