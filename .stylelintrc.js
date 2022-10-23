@@ -370,6 +370,8 @@ module.exports = {
     "import-notation": null,
     indentation: null,
     "selector-list-comma-newline-after": "always-multi-line",
+
+    /* Order styles */
     "order/properties-order": [propertyOrder],
   },
 };
