@@ -1,13 +1,21 @@
-import styles from "../styles/home.module.scss";
-
-const NotFound = () => {
+const NotFoundPage = () => {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
+    <div style={{ padding: "0 2rem" }}>
+      <main
+        style={{
+          display: "flex",
+          flex: 1,
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "100vh",
+          padding: "4rem 0",
+        }}
+      >
         <h1>404 Page</h1>
       </main>
     </div>
   );
 };
 
-export default NotFound;
+export default NotFoundPage;
