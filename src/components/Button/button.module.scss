@@ -1,0 +1,46 @@
+.wrapper {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.common {
+  padding: 1rem 2rem;
+  color: #fff;
+  background-color: #766fde;
+  border-radius: 12px;
+
+  &:hover {
+    background-color: #8a84eb;
+  }
+}
+
+.text {
+  &:hover {
+    text-decoration: underline #8a84eb 2px;
+    text-underline-position: under;
+  }
+}
+
+.gradient {
+  padding: 1rem 2rem;
+  color: #fff;
+  background: linear-gradient(
+      90deg,
+      rgb(145 139 236 / 100%),
+      rgb(118 111 222 / 100%) 51%,
+      rgb(145 139 236 / 100%)
+    )
+    0 / 200%;
+  border-radius: 12px;
+  transition: 0.5s;
+
+  &:hover {
+    background: linear-gradient(
+        90deg,
+        rgb(145 139 236 / 100%),
+        rgb(118 111 222 / 100%) 51%,
+        rgb(145 139 236 / 100%)
+      )
+      100% / 200%;
+  }
+}
