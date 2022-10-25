@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./header.module.scss";
+import Button from "../Button";
 
 const Header = () => {
   return (
@@ -11,8 +12,8 @@ const Header = () => {
           </Link>
         </div>
         <div className={styles.right}>
-          <div className={styles.button__text}>Sign In</div>
-          <div className={styles.button}>Sign Up</div>
+          <Button title="Signin" type="text" />
+          <Button title="Signup" type="common" />
         </div>
       </header>
     </>
