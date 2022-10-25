@@ -12,10 +12,8 @@ const Home = () => {
         quality={100}
         layout="fill"
         objectFit="cover"
-        style={{
-          zIndex: -1,
-        }}
         loading="eager"
+        style={{ zIndex: "-1", opacity: "0.5" }}
       />
       <div className={styles.introduction}>
         <div className={styles.title}>Create Short Links!</div>
