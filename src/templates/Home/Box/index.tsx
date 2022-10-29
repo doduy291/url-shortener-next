@@ -8,7 +8,13 @@ const Box = () => {
     <div className={styles.box}>
       <div className={styles.inputWrapper}>
         <span className={styles.headInput}>
-          <Image src={chainIcon} alt="icon" width={27} height={27} />
+          <Image
+            src={chainIcon}
+            alt="icon"
+            width={27}
+            height={27}
+            style={{ pointerEvents: "none" }}
+          />
         </span>
         <input
           className={styles.input}
