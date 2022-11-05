@@ -3,13 +3,12 @@ import { prisma } from "../../../utils/prisma-client";
 
 const getUrl = async (req: NextApiRequest, res: NextApiResponse) => {
   const { slug } = req.query;
-
   if (!slug || typeof slug !== "string") {
     res.status(404).send({ message: "Missing slug" });
     return;
   }
 
-  const data = await prisma.shortLink.findFirst({
+  const data = await prisma.link.findFirst({
     where: {
       slug: {
         equals: slug,
@@ -29,4 +28,5 @@ const getUrl = async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader("Cache-Control", "s-maxage=86400, stale-while-revalidate");
   return res.json(data);
 };
+
 export default getUrl;
