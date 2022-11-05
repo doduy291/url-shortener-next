@@ -6,8 +6,8 @@ export async function middleware(req: NextRequest) {
   }
 
   const slug = req.nextUrl.pathname.split("/").pop();
-  const res = await fetch(`${req.nextUrl.origin}/api/get-url/${slug}`);
-
+  const originalUrl = process.env.VERCEL_URL || req.nextUrl.origin;
+  const res = await fetch(`${originalUrl}/api/get-url/${slug}`);
   const data = await res.json();
 
   if (data?.url) {
