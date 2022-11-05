@@ -42,5 +42,9 @@
         rgb(145 139 236 / 100%)
       )
       100% / 200%;
+
+    &:active {
+      box-shadow: inset 16px 65px 64px 0 rgb(0 0 0 / 20%);
+    }
   }
 }

@@ -1,10 +1,5 @@
 import { NextSeo } from "next-seo";
-
-interface MetaProps {
-  title: string;
-  description: string;
-  canonical?: string;
-}
+import { MetaProps } from "~/types/Meta";
 
 const Meta = (props: MetaProps) => {
   return (
