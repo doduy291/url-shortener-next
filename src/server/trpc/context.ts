@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { inferAsyncReturnType } from "@trpc/server";
 import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { prisma } from "../../utils/prisma-client";
+import { prisma } from "~/utils/prisma-client";
 
 /**
  * Creates context for an incoming request

@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { customAlphabet } from "nanoid/async";
 import { publicProcedure, router } from "../trpc";
-import { alphabetStr } from "../../../utils/constants";
+import { alphabetStr } from "~/utils/constants";
 
 const shortenerRouter = router({
   getAllLinks: publicProcedure.query(async ({ ctx }) => {
