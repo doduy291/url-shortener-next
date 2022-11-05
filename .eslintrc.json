@@ -1,4 +1,6 @@
 {
+  /* Extends */
+  // implement the entire plugins
   "extends": [
     "next/core-web-vitals",
     "eslint:recommended",
@@ -8,8 +10,16 @@
     "plugin:@next/next/recommended",
     "plugin:import/recommended"
   ],
+
+  /* Parser */
+  // Allow Eslint lint typescript code
   "parser": "@typescript-eslint/parser",
-  "plugins": [], // Only use "plugins" with customize rules
+
+  /* Plugins */
+  // Only use "plugins" with customize rules (reference: https://www.npmjs.com/package/eslint-plugin-react-hooks)
+  "plugins": [],
+
+  /* Rules */
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
