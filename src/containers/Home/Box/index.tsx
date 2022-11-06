@@ -1,10 +1,11 @@
 import Image from "next/image";
 import React, { useRef } from "react";
+import clsx from "clsx";
 import Button from "~/components/Button";
 import styles from "../home.module.scss";
 import chainIcon from "public/icon/link-chain.svg";
 import { trpc } from "~/utils/trpc";
-import { baseUrl } from "~/utils/helpers";
+import { baseUrl, copyToClipboard } from "~/utils/helpers";
 
 const Box = () => {
   // const utils = trpc.useContext();
@@ -40,12 +41,37 @@ const Box = () => {
         </div>
       </div>
       {/* {createSlugLink.isSuccess && ( */}
-      <div className={styles.linkWrapper}>
-        <span className={styles.shortLink}>{`${baseUrl()}/${
-          createSlugLink.data?.slug || "test"
-        }`}</span>
+      <div className={clsx(styles.inputWrapper, styles["inputWrapper--short"])}>
+        <a
+          href={`${baseUrl()}`}
+          target="_blank"
+          rel="noreferrer"
+          className={styles.shortLink}
+        >{`${baseUrl()}/${createSlugLink.data?.slug || "test"}`}</a>
         <div className={styles.btnGroup}>
-          <Button title="Copy" type="" onClick={shortenHandler} />
+          <Button
+            title="QR Code"
+            type="common"
+            style={{
+              fontSize: "16px",
+              padding: "0.6rem 1rem",
+              borderRadius: "6px",
+            }}
+          />
+          <Button
+            title="Copy"
+            type="common"
+            onClick={() =>
+              copyToClipboard(
+                `${baseUrl()}/${createSlugLink.data?.slug || "test"}`,
+              )
+            }
+            style={{
+              fontSize: "16px",
+              padding: "0.6rem 1rem",
+              borderRadius: "6px",
+            }}
+          />
         </div>
       </div>
       {/* )} */}

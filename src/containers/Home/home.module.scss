@@ -56,9 +56,15 @@
   position: relative;
   display: flex;
   gap: 0 1rem;
+  align-items: center;
   padding: 1rem 1.188rem;
   background-color: #f6f5fc;
   border-radius: 12px;
+
+  &--short {
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
 }
 
 .headInput {
@@ -82,4 +88,17 @@
 .btnInput {
   position: relative;
   font-size: 1.125rem;
+}
+
+.btnGroup {
+  display: flex;
+  gap: 6px;
+}
+
+.shortLink {
+  overflow: hidden !important;
+  font-weight: 500;
+  color: #766fde;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

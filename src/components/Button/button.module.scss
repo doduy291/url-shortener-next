@@ -3,26 +3,33 @@
   cursor: pointer;
 }
 
-.common {
+.btn {
   padding: 1rem 2rem;
-  color: #fff;
-  background-color: #766fde;
+  user-select: none;
   border-radius: 12px;
+  transition: 0.5s;
 
   &:hover {
+    text-decoration: underline #8a84eb 2px;
+    text-underline-position: under;
+
+    &:active {
+      box-shadow: inset 16px 20px 20px 16px rgb(0 0 0 / 10%);
+    }
+  }
+}
+
+.common {
+  color: #fff;
+  background-color: #766fde;
+
+  &:hover {
+    text-decoration: none;
     background-color: #8a84eb;
   }
 }
 
-.text {
-  &:hover {
-    text-decoration: underline #8a84eb 2px;
-    text-underline-position: under;
-  }
-}
-
 .gradient {
-  padding: 1rem 2rem;
   color: #fff;
   background: linear-gradient(
       90deg,
@@ -31,10 +38,9 @@
       rgb(145 139 236 / 100%)
     )
     0 / 200%;
-  border-radius: 12px;
-  transition: 0.5s;
 
   &:hover {
+    text-decoration: none;
     background: linear-gradient(
         90deg,
         rgb(145 139 236 / 100%),
@@ -44,7 +50,7 @@
       100% / 200%;
 
     &:active {
-      box-shadow: inset 16px 65px 64px 0 rgb(0 0 0 / 20%);
+      box-shadow: inset 16px 20px 20px 16px rgb(0 0 0 / 10%);
     }
   }
 }

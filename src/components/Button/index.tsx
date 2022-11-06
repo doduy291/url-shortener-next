@@ -1,16 +1,16 @@
+import clsx from "clsx";
 import styles from "./button.module.scss";
+import { ButtonProps } from "~/types/Button";
 
-interface Props {
-  title?: string;
-  type: string;
-  onClick?: () => void;
-}
-
-// enum typeEnum
-const Button: React.FC<Props> = (props) => {
+const Button: React.FC<ButtonProps> = (props) => {
   return (
     <div className={styles.wrapper} onClick={props.onClick}>
-      <div className={styles[props.type]}>{props.title}</div>
+      <div
+        className={clsx(styles.btn, styles[props.type || ""])}
+        style={props.style}
+      >
+        {props.title}
+      </div>
     </div>
   );
 };

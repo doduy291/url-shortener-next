@@ -12,7 +12,7 @@ const Header = () => {
           </Link>
         </div>
         <div className={styles.right}>
-          <Button title="Signin" type="text" />
+          <Button title="Signin" />
           <Button title="Signup" type="common" />
         </div>
       </header>
