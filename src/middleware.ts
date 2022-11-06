@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { baseUrl } from "./utils/helpers";
 
 export async function middleware(req: NextRequest) {
   if (req.nextUrl.pathname === "/") {
@@ -6,8 +7,7 @@ export async function middleware(req: NextRequest) {
   }
 
   const slug = req.nextUrl.pathname.split("/").pop();
-  const originalUrl = process.env.VERCEL_URL || req.nextUrl.origin;
-  const res = await fetch(`${originalUrl}/api/get-url/${slug}`);
+  const res = await fetch(`${baseUrl}/api/get-url/${slug}`);
   const data = await res.json();
 
   if (data?.url) {
