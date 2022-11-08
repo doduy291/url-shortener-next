@@ -1,13 +1,14 @@
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import React, { useRef } from "react";
 import clsx from "clsx";
-// import
+import QRCode from "react-qr-code";
 import Button from "~/components/Button";
 import styles from "../home.module.scss";
 import chainIcon from "~/assets/icon/link-chain.svg";
 import { trpc } from "~/libs/trpc";
 import { baseUrl, copyToClipboard } from "~/utils/helpers";
-// import Modal from "~/components/Modal";
+const Modal = dynamic(() => import("~/components/Modal"), { ssr: false });
 
 const Box = () => {
   // const utils = trpc.useContext();
@@ -76,7 +77,20 @@ const Box = () => {
           />
         </div>
       </div>
-      {/* <Modal></Modal> */}
+      <Modal>
+        <div className="justify-center">
+          <QRCode
+            value={`${baseUrl()}/${createSlugLink.data?.slug || "SmXEWEWK"}`}
+            size={168}
+            level={"L"}
+          />
+        </div>
+        <Button
+          title="Download as image"
+          type="common"
+          style={{ marginTop: "1rem" }}
+        />
+      </Modal>
       {/* )} */}
     </div>
   );
