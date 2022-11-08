@@ -1,11 +1,13 @@
 import Image from "next/image";
 import React, { useRef } from "react";
 import clsx from "clsx";
+// import
 import Button from "~/components/Button";
 import styles from "../home.module.scss";
-import chainIcon from "public/icon/link-chain.svg";
+import chainIcon from "~/assets/icon/link-chain.svg";
 import { trpc } from "~/utils/trpc";
 import { baseUrl, copyToClipboard } from "~/utils/helpers";
+// import Modal from "~/components/Modal";
 
 const Box = () => {
   // const utils = trpc.useContext();
@@ -74,6 +76,7 @@ const Box = () => {
           />
         </div>
       </div>
+      {/* <Modal></Modal> */}
       {/* )} */}
     </div>
   );

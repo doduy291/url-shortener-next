@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./home.module.scss";
 import Box from "./Box";
-import backgroundImg from "../../../public/background.svg";
+import backgroundImg from "~/assets/bg/background.svg";
 
 const Home = () => {
   return (
