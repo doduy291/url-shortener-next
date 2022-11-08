@@ -4,21 +4,17 @@ const useClickAwayListener = (initialValue: boolean) => {
   const clickRef = useRef<HTMLDivElement>(null);
   const [isVisible, setVisible] = useState(initialValue);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const clickHandler = (event: any) => {
+    if (clickRef.current && !clickRef.current.contains(event.target)) {
+      setVisible(false);
+    }
+  };
+
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    document.addEventListener("click", (event: any) => {
-      if (!clickRef.current?.contains(event.target)) {
-        setVisible(false);
-      }
-    });
+    document.addEventListener("click", clickHandler, true);
     return () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      document.removeEventListener("click", (event: any) => {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        if (!clickRef.current?.contains(event.target)) {
-          setVisible(false);
-        }
-      });
+      document.removeEventListener("click", clickHandler, true);
     };
   }, []);
 
