@@ -3,17 +3,20 @@ import dynamic from "next/dynamic";
 import React, { useRef } from "react";
 import clsx from "clsx";
 import QRCode from "react-qr-code";
-import Button from "~/components/Button";
 import styles from "../home.module.scss";
 import chainIcon from "~/assets/icon/link-chain.svg";
 import { trpc } from "~/libs/trpc";
 import { baseUrl, copyToClipboard } from "~/utils/helpers";
+import useClickAwayListner from "~/hooks/useClickAwayListener";
+
+import Button from "~/components/Button";
 const Modal = dynamic(() => import("~/components/Modal"), { ssr: false });
 
 const Box = () => {
   // const utils = trpc.useContext();
   const urlRef = useRef<HTMLInputElement>(null);
   const createSlugLink = trpc.shortener.createSlugLink.useMutation();
+  const { clickRef, isVisible, setVisible } = useClickAwayListner(false);
 
   const shortenHandler = () => {
     const urlValue = urlRef.current?.value;
@@ -21,7 +24,6 @@ const Box = () => {
 
     return createSlugLink.mutate({ url: urlValue });
   };
-
   return (
     <div className={styles.box}>
       <div className={styles.inputWrapper}>
@@ -55,6 +57,7 @@ const Box = () => {
           <Button
             title="QR Code"
             type="common"
+            onClick={() => setVisible((currentState) => !currentState)}
             style={{
               fontSize: "16px",
               padding: "0.6rem 1rem",
@@ -77,20 +80,39 @@ const Box = () => {
           />
         </div>
       </div>
-      <Modal>
-        <div className="justify-center">
-          <QRCode
-            value={`${baseUrl()}/${createSlugLink.data?.slug || "SmXEWEWK"}`}
-            size={168}
-            level={"L"}
-          />
-        </div>
-        <Button
-          title="Download as image"
-          type="common"
-          style={{ marginTop: "1rem" }}
-        />
-      </Modal>
+      {isVisible && (
+        <Modal>
+          <div className="modal__container" ref={clickRef}>
+            <div className="justify-center">
+              <QRCode
+                value={`${baseUrl()}/${
+                  createSlugLink.data?.slug || "SmXEWEWK"
+                }`}
+                size={168}
+                level={"L"}
+              />
+            </div>
+            <Button
+              title="Download as image"
+              type="common"
+              style={{ marginTop: "1rem" }}
+            />
+            <div
+              className="modal__closeWrapper"
+              onClick={() => setVisible(false)}
+            >
+              <svg
+                className="modal__closeIcon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+              >
+                <path d="M6.414 5A1 1 0 1 0 5 6.414L10.586 12 5 17.586A1 1 0 1 0 6.414 19L12 13.414 17.586 19A1 1 0 1 0 19 17.586L13.414 12 19 6.414A1 1 0 1 0 17.586 5L12 10.586 6.414 5Z"></path>
+              </svg>
+            </div>
+          </div>
+        </Modal>
+      )}
       {/* )} */}
     </div>
   );
