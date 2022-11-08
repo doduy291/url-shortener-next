@@ -5,7 +5,7 @@ import clsx from "clsx";
 import Button from "~/components/Button";
 import styles from "../home.module.scss";
 import chainIcon from "~/assets/icon/link-chain.svg";
-import { trpc } from "~/utils/trpc";
+import { trpc } from "~/libs/trpc";
 import { baseUrl, copyToClipboard } from "~/utils/helpers";
 // import Modal from "~/components/Modal";
 

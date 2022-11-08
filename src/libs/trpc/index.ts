@@ -4,7 +4,7 @@ import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
 import type { GetInferenceHelpers } from "@trpc/server";
 import type { AppRouter } from "~/server/trpc/routers/_app";
-import { baseUrl } from "../helpers";
+import { baseUrl } from "../../utils/helpers";
 
 export const trpc = createTRPCNext<AppRouter>({
   config() {
