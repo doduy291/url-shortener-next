@@ -30,3 +30,51 @@ textarea {
   display: flex;
   justify-content: center;
 }
+
+.modal {
+  position: relative;
+}
+
+.modal__container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  padding: 2rem;
+  background-color: #f7f7f7;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 20%), 0 1px 20px 5px rgb(0 0 0 / 4%);
+  transform: translate(-50%, -50%);
+}
+
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 40%);
+}
+
+.modal__closeWrapper {
+  position: absolute;
+  top: 0;
+  right: -2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px rgb(0 0 0 / 20%);
+  transform: translate(-50%, -50%);
+}
+
+.modal__closeIcon {
+  opacity: 0.5;
+  fill: #333;
+  transition: opacity 0.2s;
+}
