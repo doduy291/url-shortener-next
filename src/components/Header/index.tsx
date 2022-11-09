@@ -12,8 +12,7 @@ const Header = () => {
           </Link>
         </div>
         <div className={styles.right}>
-          <Button title="Signin" />
-          <Button title="Signup" type="common" />
+          <Button title="List URL" type="common" />
         </div>
       </header>
     </>
