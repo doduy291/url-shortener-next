@@ -1,14 +1,24 @@
+/* Packages */
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import React, { useRef } from "react";
 import clsx from "clsx";
 import QRCode from "react-qr-code";
+
+/* Module styling */
 import styles from "../home.module.scss";
+
+/* Assets */
 import chainIcon from "~/assets/icon/link-chain.svg";
+
+/* Libs, Utils */
 import { trpc } from "~/libs/trpc";
-import { baseUrl, copyToClipboard } from "~/utils/helpers";
+import { baseUrl, copyToClipboard, downloadQRSvgAsPNG } from "~/utils/helpers";
+
+/* Hooks */
 import useClickAwayListner from "~/hooks/useClickAwayListener";
 
+/* Components */
 import Button from "~/components/Button";
 const Modal = dynamic(() => import("~/components/Modal"), { ssr: false });
 
@@ -85,6 +95,7 @@ const Box = () => {
           <div className="modal__container" ref={clickRef}>
             <div className="justify-center">
               <QRCode
+                id="qrcode"
                 value={`${baseUrl()}/${
                   createSlugLink.data?.slug || "SmXEWEWK"
                 }`}
@@ -96,6 +107,9 @@ const Box = () => {
               title="Download as image"
               type="common"
               style={{ marginTop: "1rem" }}
+              onClick={() =>
+                downloadQRSvgAsPNG(createSlugLink.data?.slug || "SmXEWEWK")
+              }
             />
             <div
               className="modal__closeWrapper"
