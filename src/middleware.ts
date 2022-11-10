@@ -7,7 +7,7 @@ export async function middleware(req: NextRequest) {
   }
 
   const slug = req.nextUrl.pathname.split("/").pop();
-  const res = await fetch(`${baseUrl}/api/get-url/${slug}`);
+  const res = await fetch(`${baseUrl()}/api/get-url/${slug}`);
   const data = await res.json();
 
   if (data?.url) {
