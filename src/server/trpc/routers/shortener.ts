@@ -12,7 +12,7 @@ const shortenerRouter = router({
       z.object({
         url: z
           .string()
-          .min(1, { message: "URL is required." })
+          .min(10, { message: "URL is invalid" })
           .url({ message: "URL is invalid" }),
       }),
     )

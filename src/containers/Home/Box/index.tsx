@@ -13,7 +13,12 @@ import chainIcon from "~/assets/icon/link-chain.svg";
 
 /* Libs, Utils */
 import { trpc } from "~/libs/trpc";
-import { baseUrl, copyToClipboard, downloadQRSvgAsPNG } from "~/utils/helpers";
+import {
+  baseUrl,
+  copyToClipboard,
+  downloadQRSvgAsPNG,
+  errorMsgTRPC,
+} from "~/utils/helpers";
 
 /* Hooks */
 import useClickAwayListner from "~/hooks/useClickAwayListener";
@@ -34,6 +39,7 @@ const Box = () => {
 
     return createSlugLink.mutate({ url: urlValue });
   };
+
   return (
     <div className={styles.box}>
       <div className={styles.inputWrapper}>
@@ -55,50 +61,55 @@ const Box = () => {
           <Button title="Shorten" type="gradient" onClick={shortenHandler} />
         </div>
       </div>
-      {/* {createSlugLink.isSuccess && ( */}
-      <div className={clsx(styles.inputWrapper, styles["inputWrapper--short"])}>
-        <a
-          href={`${baseUrl()}`}
-          target="_blank"
-          rel="noreferrer"
-          className={styles.shortLink}
-        >{`${baseUrl()}/${createSlugLink.data?.slug || "test"}`}</a>
-        <div className={styles.btnGroup}>
-          <Button
-            title="QR Code"
-            type="common"
-            onClick={() => setVisible((currentState) => !currentState)}
-            style={{
-              fontSize: "16px",
-              padding: "0.6rem 1rem",
-              borderRadius: "6px",
-            }}
-          />
-          <Button
-            title="Copy"
-            type="common"
-            onClick={() =>
-              copyToClipboard(
-                `${baseUrl()}/${createSlugLink.data?.slug || "test"}`,
-              )
-            }
-            style={{
-              fontSize: "16px",
-              padding: "0.6rem 1rem",
-              borderRadius: "6px",
-            }}
-          />
+
+      {createSlugLink.isError && (
+        <div className={styles.message} data-message="error">
+          {errorMsgTRPC(createSlugLink.error.shape?.message)}
         </div>
-      </div>
+      )}
+      {createSlugLink.isSuccess && (
+        <div
+          className={clsx(styles.inputWrapper, styles["inputWrapper--short"])}
+        >
+          <a
+            href={`${baseUrl()}/${createSlugLink.data.slug}`}
+            target="_blank"
+            rel="noreferrer"
+            className={styles.shortLink}
+          >{`${baseUrl()}/${createSlugLink.data.slug}`}</a>
+          <div className={styles.btnGroup}>
+            <Button
+              title="QR Code"
+              type="common"
+              onClick={() => setVisible((currentState) => !currentState)}
+              style={{
+                fontSize: "16px",
+                padding: "0.6rem 1rem",
+                borderRadius: "6px",
+              }}
+            />
+            <Button
+              title="Copy"
+              type="common"
+              onClick={() =>
+                copyToClipboard(`${baseUrl()}/${createSlugLink.data.slug}`)
+              }
+              style={{
+                fontSize: "16px",
+                padding: "0.6rem 1rem",
+                borderRadius: "6px",
+              }}
+            />
+          </div>
+        </div>
+      )}
       {isVisible && (
         <Modal>
           <div className="modal__container" ref={clickRef}>
             <div className="justify-center">
               <QRCode
                 id="qrcode"
-                value={`${baseUrl()}/${
-                  createSlugLink.data?.slug || "SmXEWEWK"
-                }`}
+                value={`${baseUrl()}/${createSlugLink.data?.slug}`}
                 size={168}
                 level={"L"}
               />
@@ -108,7 +119,7 @@ const Box = () => {
               type="common"
               style={{ marginTop: "1rem" }}
               onClick={() =>
-                downloadQRSvgAsPNG(createSlugLink.data?.slug || "SmXEWEWK")
+                downloadQRSvgAsPNG(createSlugLink.data?.slug as string)
               }
             />
             <div
@@ -127,7 +138,6 @@ const Box = () => {
           </div>
         </Modal>
       )}
-      {/* )} */}
     </div>
   );
 };

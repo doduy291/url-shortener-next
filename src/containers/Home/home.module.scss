@@ -46,7 +46,7 @@
 .box {
   width: 60%;
   margin-top: 5rem;
-  padding: 3rem 2rem;
+  padding: 2rem 2rem;
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 16px 65px 64px 0 rgb(0 0 0 / 10%);
@@ -101,4 +101,15 @@
   color: #766fde;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.message {
+  margin-top: 0.625rem;
+  margin-left: 0.313rem;
+  font-weight: 600;
+}
+
+.message[data-message="error"] {
+  font-style: italic;
+  color: #ff8a8a;
 }

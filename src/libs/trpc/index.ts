@@ -3,12 +3,21 @@
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
 import type { GetInferenceHelpers } from "@trpc/server";
+import superjson from "superjson";
 import type { AppRouter } from "~/server/trpc/routers/_app";
 import { baseUrl } from "../../utils/helpers";
 
 export const trpc = createTRPCNext<AppRouter>({
   config() {
     return {
+      /**
+       * @link https://trpc.io/docs/data-transformers
+       */
+      transformer: superjson,
+
+      /**
+       * @link https://trpc.io/docs/links
+       */
       links: [
         // adds pretty logs to your console in development and logs errors in production
         loggerLink({

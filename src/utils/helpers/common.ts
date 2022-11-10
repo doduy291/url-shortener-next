@@ -48,3 +48,12 @@ export const downloadQRSvgAsPNG = (slug: string) => {
     a.remove();
   };
 };
+
+export const isJSON = (str: string) => {
+  try {
+    const json = JSON.parse(str);
+    return typeof json === "object";
+  } catch (error) {
+    return false;
+  }
+};
