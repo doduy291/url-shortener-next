@@ -19,6 +19,7 @@ import {
   downloadQRSvgAsPNG,
   errorMsgTRPC,
 } from "~/utils/helpers";
+import { httpRegex } from "~/utils/constants";
 
 /* Hooks */
 import useClickAwayListner from "~/hooks/useClickAwayListener";
@@ -34,8 +35,11 @@ const Box = () => {
   const { clickRef, isVisible, setVisible } = useClickAwayListner(false);
 
   const shortenHandler = () => {
-    const urlValue = urlRef.current?.value;
+    let urlValue = urlRef.current?.value;
     if (!urlValue) return;
+    if (!httpRegex.test(urlValue)) {
+      urlValue = "http://" + urlValue;
+    }
 
     return createSlugLink.mutate({ url: urlValue });
   };
