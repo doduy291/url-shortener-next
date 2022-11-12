@@ -1,6 +1,13 @@
+/* Packages */
 import Image from "next/image";
+
+/* Module Styling */
 import styles from "./home.module.scss";
+
+/* Components */
 import Box from "./Box";
+
+/* Assets */
 import backgroundImg from "~/assets/bg/background.svg";
 
 const Home = () => {
