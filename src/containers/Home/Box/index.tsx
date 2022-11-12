@@ -23,26 +23,28 @@ import { httpRegex } from "~/utils/constants";
 
 /* Hooks */
 import useClickAwayListner from "~/hooks/useClickAwayListener";
+import useDebounce from "~/hooks/useDebounce";
 
 /* Components */
 import Button from "~/components/Button";
 const Modal = dynamic(() => import("~/components/Modal"), { ssr: false });
 
 const Box = () => {
-  // const utils = trpc.useContext();
+  const debounce = useDebounce();
   const urlRef = useRef<HTMLInputElement>(null);
   const createSlugLink = trpc.shortener.createSlugLink.useMutation();
   const { clickRef, isVisible, setVisible } = useClickAwayListner(false);
 
-  const shortenHandler = () => {
-    let urlValue = urlRef.current?.value;
-    if (!urlValue) return;
-    if (!httpRegex.test(urlValue)) {
-      urlValue = "http://" + urlValue;
-    }
+  const shortenHandler = () =>
+    debounce(() => {
+      let urlValue = urlRef.current?.value;
+      if (!urlValue) return;
+      if (!httpRegex.test(urlValue)) {
+        urlValue = "http://" + urlValue;
+      }
 
-    return createSlugLink.mutate({ url: urlValue });
-  };
+      return createSlugLink.mutate({ url: urlValue });
+    }, 500);
 
   return (
     <div className={styles.box}>
