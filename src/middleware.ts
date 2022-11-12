@@ -18,6 +18,6 @@ export async function middleware(req: NextRequest) {
 export const config = {
   matcher: [
     // Except for the ones starting with (use negative lookhead regex):
-    "/((?!static|favicon.ico|_next).*)",
+    "/((?!api|_next/static|favicon.ico).*)",
   ],
 };
