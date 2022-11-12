@@ -71,6 +71,35 @@
   display: flex;
 }
 
+.textareaLabel {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  cursor: text;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2rem;
+    content: "";
+    transform: translateY(-100%);
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2rem;
+    content: "";
+    transform: translateY(60%);
+  }
+}
+
 .input {
   position: relative;
   width: 100%;

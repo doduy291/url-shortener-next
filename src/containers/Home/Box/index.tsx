@@ -56,11 +56,15 @@ const Box = () => {
             style={{ pointerEvents: "none" }}
           />
         </span>
-        <input
-          className={styles.input}
-          ref={urlRef}
-          placeholder="Paste a link to shorten it"
-        />
+
+        <label className={styles.textareaLabel}>
+          <input
+            className={styles.input}
+            ref={urlRef}
+            placeholder="Paste a link to shorten it"
+          />
+        </label>
+
         <div className={styles.btnInput}>
           <Button title="Shorten" type="gradient" onClick={shortenHandler} />
         </div>
@@ -113,7 +117,7 @@ const Box = () => {
             <div className="justify-center">
               <QRCode
                 id="qrcode"
-                value={`${baseUrl()}/${createSlugLink.data?.slug}`}
+                value={baseUrl() + "/" + createSlugLink.data?.slug}
                 size={168}
                 level={"L"}
               />
