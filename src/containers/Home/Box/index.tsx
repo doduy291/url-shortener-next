@@ -27,6 +27,7 @@ import useDebounce from "~/hooks/useDebounce";
 
 /* Components */
 import Button from "~/components/Button";
+import Loader from "~/components/Loader";
 const Modal = dynamic(() => import("~/components/Modal"), { ssr: false });
 
 const Box = () => {
@@ -71,7 +72,9 @@ const Box = () => {
           <Button title="Shorten" type="gradient" onClick={shortenHandler} />
         </div>
       </div>
-
+      <div className={clsx({ fade: createSlugLink.isLoading })}>
+        {createSlugLink.isLoading && <Loader style={{ marginTop: "2rem" }} />}
+      </div>
       {createSlugLink.isError && (
         <div className={styles.message} data-message="error">
           {errorMsgTRPC(createSlugLink.error.shape?.message)}

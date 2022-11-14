@@ -31,6 +31,15 @@ textarea {
   justify-content: center;
 }
 
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.fade {
+  animation: fade-in 1500ms;
+}
+
+/* Modal Styles */
 .modal {
   position: relative;
 }
@@ -45,7 +54,7 @@ textarea {
   border-radius: 6px;
   box-shadow: 0 0 10px rgb(0 0 0 / 20%), 0 1px 20px 5px rgb(0 0 0 / 4%);
   transform: translate(-50%, -50%);
-  animation: modal-fade-in 500ms;
+  animation: fade-in 500ms;
 }
 
 .modal__overlay {
@@ -80,7 +89,8 @@ textarea {
   transition: opacity 0.2s;
 }
 
-@keyframes modal-fade-in {
+/* Keyframes */
+@keyframes fade-in {
   0% {
     opacity: 0;
   }
