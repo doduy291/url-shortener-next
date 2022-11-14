@@ -1,7 +1,7 @@
 /* Packages */
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import clsx from "clsx";
 import QRCode from "react-qr-code";
 
@@ -33,6 +33,7 @@ const Modal = dynamic(() => import("~/components/Modal"), { ssr: false });
 const Box = () => {
   const debounce = useDebounce();
   const urlRef = useRef<HTMLInputElement>(null);
+  const [, setDoesExistURL] = useState<boolean>(false);
   const createSlugLink = trpc.shortener.createSlugLink.useMutation();
   const { clickRef, isVisible, setVisible } = useClickAwayListner(false);
 
@@ -47,6 +48,12 @@ const Box = () => {
       return createSlugLink.mutate({ url: urlValue });
     }, 500);
 
+  const otherShortenHandler = () => {
+    if (urlRef.current?.value) {
+      urlRef.current.value = "";
+      setDoesExistURL((currentValue) => !currentValue);
+    }
+  };
   return (
     <div className={styles.box}>
       <div className={styles.inputWrapper}>
@@ -67,9 +74,16 @@ const Box = () => {
             placeholder="Paste a link to shorten it"
           />
         </label>
-
         <div className={styles.btnInput}>
-          <Button title="Shorten" type="gradient" onClick={shortenHandler} />
+          {!urlRef.current?.value ? (
+            <Button title="Shorten" type="gradient" onClick={shortenHandler} />
+          ) : (
+            <Button
+              title="Other URL"
+              type="gradient"
+              onClick={otherShortenHandler}
+            />
+          )}
         </div>
       </div>
       <div className={clsx({ fade: createSlugLink.isLoading })}>
