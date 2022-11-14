@@ -9,6 +9,13 @@ Boilerplate: https://github.com/doduy291/next-js-setup
 - [tRPC](https://trpc.io)
 - [Sass](https://sass-lang.com)
 
+## Introduction
+
+This is URL Shortner application which contains the following features:
+
+- Generate short link
+- Generate short link with QR Code
+
 ## Installation
 
 **1. Clone the repository and install dependencies**
@@ -65,8 +72,8 @@ or
 $ npx prisma migrate dev
 ```
 
-According to document, `db push` to prototype a schema at the start of a project and initialize a migration history when you are happy with the first draft. <br/>
-_Read more_ about both commands: https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push#choosing-db-push-or-prisma-migrate
+According to document, `db push` to prototype a schema at the start of a project and initialize a migration history when you are happy with the first draft. <br/> <br/>
+_Read more about both commands_: https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push#choosing-db-push-or-prisma-migrate
 
 - Explore and manipulate data, kinda like phpMyAdmin, MongoDB Compass,...
 
