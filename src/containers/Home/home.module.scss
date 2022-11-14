@@ -64,6 +64,7 @@
   &--short {
     justify-content: space-between;
     margin-top: 1rem;
+    animation: input-wrapper-fade-in 1500ms;
   }
 }
 
@@ -141,4 +142,15 @@
 .message[data-message="error"] {
   font-style: italic;
   color: #ff8a8a;
+}
+
+/* Keyframes */
+@keyframes input-wrapper-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

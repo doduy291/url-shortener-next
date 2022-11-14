@@ -31,6 +31,15 @@ textarea {
   justify-content: center;
 }
 
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.fade {
+  animation: fade-in 1500ms;
+}
+
+/* Modal Styles */
 .modal {
   position: relative;
 }
@@ -78,4 +87,15 @@ textarea {
   opacity: 0.5;
   fill: #333;
   transition: opacity 0.2s;
+}
+
+/* Keyframes */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
