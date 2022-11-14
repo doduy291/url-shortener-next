@@ -45,7 +45,7 @@ textarea {
   border-radius: 6px;
   box-shadow: 0 0 10px rgb(0 0 0 / 20%), 0 1px 20px 5px rgb(0 0 0 / 4%);
   transform: translate(-50%, -50%);
-  animation: fade-in 500ms;
+  animation: modal-fade-in 500ms;
 }
 
 .modal__overlay {
@@ -78,4 +78,14 @@ textarea {
   opacity: 0.5;
   fill: #333;
   transition: opacity 0.2s;
+}
+
+@keyframes modal-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
