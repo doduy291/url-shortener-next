@@ -1,10 +1,12 @@
 .wrapper {
+  flex: 1;
   font-weight: 500;
   cursor: pointer;
 }
 
 .btn {
   padding: 1rem 2rem;
+  text-align: center;
   white-space: nowrap;
   user-select: none;
   border-radius: 12px;

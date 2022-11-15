@@ -24,6 +24,7 @@ import { httpRegex } from "~/utils/constants";
 /* Hooks */
 import useClickAwayListner from "~/hooks/useClickAwayListener";
 import useDebounce from "~/hooks/useDebounce";
+import useWindowDimensions from "~/hooks/useWindowDimensions";
 
 /* Components */
 import Button from "~/components/Button";
@@ -31,6 +32,7 @@ import Loader from "~/components/Loader";
 const Modal = dynamic(() => import("~/components/Modal"), { ssr: false });
 
 const Box = () => {
+  const { widthDimension } = useWindowDimensions();
   const debounce = useDebounce();
   const urlRef = useRef<HTMLInputElement>(null);
   const [, setDoesExistURL] = useState<boolean>(false);
@@ -54,27 +56,41 @@ const Box = () => {
       setDoesExistURL((currentValue) => !currentValue);
     }
   };
+
   return (
     <div className={styles.box}>
       <div className={styles.inputWrapper}>
         <span className={styles.headInput}>
-          <Image
-            src={chainIcon}
-            alt="icon"
-            width={27}
-            height={27}
-            style={{ pointerEvents: "none" }}
-          />
+          <Image src={chainIcon} alt="icon" />
         </span>
 
         <label className={styles.textareaLabel}>
           <input
             className={styles.input}
             ref={urlRef}
-            placeholder="Paste a link to shorten it"
+            placeholder="Paste a link"
           />
         </label>
-        <div className={styles.btnInput}>
+        {widthDimension > 768 && (
+          <div className={styles.btnInput}>
+            {!urlRef.current?.value ? (
+              <Button
+                title="Shorten"
+                type="gradient"
+                onClick={shortenHandler}
+              />
+            ) : (
+              <Button
+                title="Other URL"
+                type="gradient"
+                onClick={otherShortenHandler}
+              />
+            )}
+          </div>
+        )}
+      </div>
+      {widthDimension <= 769 && (
+        <div className={clsx(styles.btnInput, "mt-1")}>
           {!urlRef.current?.value ? (
             <Button title="Shorten" type="gradient" onClick={shortenHandler} />
           ) : (
@@ -85,7 +101,7 @@ const Box = () => {
             />
           )}
         </div>
-      </div>
+      )}
       <div className={clsx({ fade: createSlugLink.isLoading })}>
         {createSlugLink.isLoading && <Loader style={{ marginTop: "2rem" }} />}
       </div>
@@ -95,40 +111,70 @@ const Box = () => {
         </div>
       )}
       {createSlugLink.isSuccess && (
-        <div
-          className={clsx(styles.inputWrapper, styles["inputWrapper--short"])}
-        >
-          <a
-            href={`${baseUrl()}/${createSlugLink.data.slug}`}
-            target="_blank"
-            rel="noreferrer"
-            className={styles.shortLink}
-          >{`${baseUrl()}/${createSlugLink.data.slug}`}</a>
-          <div className={styles.btnGroup}>
-            <Button
-              title="QR Code"
-              type="common"
-              onClick={() => setVisible((currentState) => !currentState)}
-              style={{
-                fontSize: "16px",
-                padding: "0.6rem 1rem",
-                borderRadius: "6px",
-              }}
-            />
-            <Button
-              title="Copy"
-              type="common"
-              onClick={() =>
-                copyToClipboard(`${baseUrl()}/${createSlugLink.data.slug}`)
-              }
-              style={{
-                fontSize: "16px",
-                padding: "0.6rem 1rem",
-                borderRadius: "6px",
-              }}
-            />
+        <>
+          <div
+            className={clsx(styles.inputWrapper, styles["inputWrapper--short"])}
+          >
+            <a
+              href={`${baseUrl()}/${createSlugLink.data.slug}`}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.shortLink}
+            >{`${baseUrl()}/${createSlugLink.data.slug}`}</a>
+            {widthDimension > 568 && (
+              <div className={styles.btnGroup}>
+                <Button
+                  title="QR Code"
+                  type="common"
+                  onClick={() => setVisible((currentState) => !currentState)}
+                  style={{
+                    fontSize: "16px",
+                    padding: "0.6rem 1rem",
+                    borderRadius: "6px",
+                  }}
+                />
+                <Button
+                  title="Copy"
+                  type="common"
+                  onClick={() =>
+                    copyToClipboard(`${baseUrl()}/${createSlugLink.data.slug}`)
+                  }
+                  style={{
+                    fontSize: "16px",
+                    padding: "0.6rem 1rem",
+                    borderRadius: "6px",
+                  }}
+                />
+              </div>
+            )}
           </div>
-        </div>
+          {widthDimension <= 568 && (
+            <div className={clsx(styles.btnGroup, "mt-1")}>
+              <Button
+                title="QR Code"
+                type="common"
+                onClick={() => setVisible((currentState) => !currentState)}
+                style={{
+                  fontSize: "16px",
+                  padding: "0.6rem 1rem",
+                  borderRadius: "6px",
+                }}
+              />
+              <Button
+                title="Copy"
+                type="common"
+                onClick={() =>
+                  copyToClipboard(`${baseUrl()}/${createSlugLink.data.slug}`)
+                }
+                style={{
+                  fontSize: "16px",
+                  padding: "0.6rem 1rem",
+                  borderRadius: "6px",
+                }}
+              />
+            </div>
+          )}
+        </>
       )}
       {isVisible && (
         <Modal>
