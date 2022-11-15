@@ -7,6 +7,11 @@
   justify-content: space-between;
   width: 100%;
   padding: 0 5rem;
+  transition: ease all 0.7s;
+
+  @include media($max: $mobile) {
+    padding: 0 3rem;
+  }
 }
 
 .container {

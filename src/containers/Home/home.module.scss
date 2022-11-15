@@ -50,6 +50,7 @@
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 16px 65px 64px 0 rgb(0 0 0 / 10%);
+  transition: cubic-bezier(0.22, 0.93, 0.54, 0.92) all 0.7s;
 }
 
 .inputWrapper {
@@ -70,6 +71,15 @@
 
 .headInput {
   display: flex;
+  width: 27px;
+  height: 27px;
+  pointer-events: none;
+  user-select: none;
+
+  span {
+    width: 27px !important;
+    height: 27px !important;
+  }
 }
 
 .textareaLabel {
@@ -152,5 +162,12 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+/* Global media queries */
+@include media($max: 975px) {
+  .box {
+    width: 80%;
   }
 }
