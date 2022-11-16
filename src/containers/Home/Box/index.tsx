@@ -92,12 +92,18 @@ const Box = () => {
       {widthDimension <= 769 && (
         <div className={clsx(styles.btnInput, "mt-1")}>
           {!urlRef.current?.value ? (
-            <Button title="Shorten" type="gradient" onClick={shortenHandler} />
+            <Button
+              title="Shorten"
+              type="gradient"
+              onClick={shortenHandler}
+              style={{ fontSize: "1rem", padding: "0.813rem 2rem" }}
+            />
           ) : (
             <Button
               title="Other URL"
               type="gradient"
               onClick={otherShortenHandler}
+              style={{ fontSize: "1rem", padding: "0.813rem 2rem" }}
             />
           )}
         </div>
@@ -128,7 +134,7 @@ const Box = () => {
                   type="common"
                   onClick={() => setVisible((currentState) => !currentState)}
                   style={{
-                    fontSize: "16px",
+                    fontSize: "1rem",
                     padding: "0.6rem 1rem",
                     borderRadius: "6px",
                   }}
@@ -140,7 +146,7 @@ const Box = () => {
                     copyToClipboard(`${baseUrl()}/${createSlugLink.data.slug}`)
                   }
                   style={{
-                    fontSize: "16px",
+                    fontSize: "1rem",
                     padding: "0.6rem 1rem",
                     borderRadius: "6px",
                   }}

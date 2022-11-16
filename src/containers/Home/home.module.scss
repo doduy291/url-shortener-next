@@ -21,7 +21,7 @@
 
 .title {
   padding: 0 2rem;
-  font-size: clamp(2.5rem, 5vw, 3.125rem);
+  font-size: clamp(1.625rem, 5vw, 3.125rem);
   font-weight: 800;
   color: #433da0;
   text-align: center;
@@ -169,5 +169,15 @@
 @include media($max: 975px) {
   .box {
     width: 80%;
+  }
+}
+
+@include media($max: $mobile) {
+  .box {
+    margin-top: 0;
+  }
+
+  .description {
+    font-size: 1rem;
   }
 }
