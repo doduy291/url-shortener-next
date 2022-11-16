@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { customAlphabet } from "nanoid/async";
 import { publicProcedure, router } from "../trpc";
-import { alphabetStr } from "~/utils/constants";
+import { alphabetStr, urlRegex } from "~/utils/constants";
 
 const shortenerRouter = router({
   getAllLinks: publicProcedure.query(async ({ ctx }) => {
@@ -13,7 +13,7 @@ const shortenerRouter = router({
         url: z
           .string()
           .min(10, { message: "URL is invalid" })
-          .url({ message: "URL is invalid" }),
+          .regex(urlRegex, { message: "URL is invalid" }),
       }),
     )
     .mutation(async ({ ctx, input }) => {
