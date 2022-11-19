@@ -108,7 +108,7 @@ const Box = () => {
           )}
         </div>
       )}
-      <div className={clsx({ fade: createSlugLink.isLoading })}>
+      <div className={clsx({ fade: createSlugLink.isLoading as boolean })}>
         {createSlugLink.isLoading && <Loader style={{ marginTop: "2rem" }} />}
       </div>
       {createSlugLink.isError && (
