@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run lint:eslint && npm run build-only",
+    "build-only": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:eslint": "eslint .",
     "prepare": "husky install"
   },
   "dependencies": {
