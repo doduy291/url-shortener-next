@@ -21,25 +21,23 @@
 
 .title {
   padding: 0 2rem;
-  font-size: clamp(1.625rem, 5vw, 3.125rem);
   font-weight: 800;
   color: #433da0;
   text-align: center;
+
+  @include fluid-typography(2.125rem, 3.5rem, $mobile, $desktop);
 }
 
 .description {
   width: 100%;
   max-width: 820px;
-  font-size: 1.125rem;
   font-weight: 500;
   text-align: center;
 
+  @include fluid-typography(1rem, 1.313rem, $mobile, $desktop);
+
   p {
     padding: 0 5rem;
-
-    @include media($max: $tablet) {
-      padding: 0 2rem;
-    }
   }
 }
 
@@ -132,7 +130,7 @@
 
 .btnGroup {
   display: flex;
-  gap: 6px;
+  gap: 0.375rem;
 }
 
 .shortLink {
@@ -166,7 +164,7 @@
 }
 
 /* Global media queries */
-@include media($max: 975px) {
+@include media($max: 60.875em) {
   .box {
     width: 80%;
   }
@@ -176,8 +174,10 @@
   .box {
     margin-top: 0;
   }
+}
 
-  .description {
-    font-size: 1rem;
+@include media($max: $tablet) {
+  .description p {
+    padding: 0 2rem;
   }
 }

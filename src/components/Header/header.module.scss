@@ -1,5 +1,5 @@
 .header {
-  position: absolute;
+  position: relative;
   top: 2rem;
   z-index: 1;
   display: flex;
@@ -8,10 +8,6 @@
   width: 100%;
   padding: 0 5rem;
   transition: ease all 0.7s;
-
-  @include media($max: $mobile) {
-    padding: 0 3rem;
-  }
 }
 
 .container {
@@ -26,12 +22,18 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  gap: 25px;
+  gap: 1.563rem;
   align-items: center;
 }
 
 .title {
-  font-size: 1.5625em;
+  font-size: 1.5625rem;
   font-weight: 800;
   color: #766fde;
+}
+
+@include media($max: $mobile - 0.0625em) {
+  .header {
+    padding: 0 3rem;
+  }
 }
