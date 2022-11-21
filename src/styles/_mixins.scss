@@ -1,3 +1,4 @@
+/* stylelint-disable scss/operator-no-newline-after */
 @use "sass:meta";
 @use "sass:map";
 @use "sass:string";
@@ -31,6 +32,7 @@
 //   }
 // }
 
+/* ============> MEDIA QUERIES <============ */
 @mixin media($params...) {
   $query: create-media-query($params);
 
@@ -61,4 +63,27 @@
   }
 
   @return $query;
+}
+
+/* ============> FLUID TYPOGRAPHY <============ */
+// Note: this method is used to replace clamp() for old browser version
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1); // ~ 100px / 1px = 100
+}
+
+@mixin fluid-typography($min-font-size, $max-font-size, $min-vw, $max-vw) {
+  /* Base font size */
+  font-size: #{$min-font-size};
+
+  @media (min-width: #{$min-vw}) {
+    /* The fluid typography magic 🌟  */
+    font-size: calc(
+      #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+        (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}
+    );
+  }
+
+  @media (min-width: #{$max-vw}) {
+    font-size: #{$max-font-size};
+  }
 }
