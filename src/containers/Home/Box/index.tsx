@@ -108,7 +108,7 @@ const Box = () => {
           )}
         </div>
       )}
-      <div className={clsx({ fade: createSlugLink.isLoading })}>
+      <div className={clsx({ fade: createSlugLink.isLoading as boolean })}>
         {createSlugLink.isLoading && <Loader style={{ marginTop: "2rem" }} />}
       </div>
       {createSlugLink.isError && (
@@ -161,7 +161,7 @@ const Box = () => {
                 type="common"
                 onClick={() => setVisible((currentState) => !currentState)}
                 style={{
-                  fontSize: "16px",
+                  fontSize: "1rem",
                   padding: "0.6rem 1rem",
                   borderRadius: "6px",
                 }}
@@ -173,7 +173,7 @@ const Box = () => {
                   copyToClipboard(`${baseUrl()}/${createSlugLink.data.slug}`)
                 }
                 style={{
-                  fontSize: "16px",
+                  fontSize: "1rem",
                   padding: "0.6rem 1rem",
                   borderRadius: "6px",
                 }}
