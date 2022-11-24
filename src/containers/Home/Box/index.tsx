@@ -183,38 +183,23 @@ const Box = () => {
         </>
       )}
       {isVisible && (
-        <Modal>
-          <div className="modal__container" ref={clickRef}>
-            <div className="justify-center">
-              <QRCode
-                id="qrcode"
-                value={baseUrl() + "/" + createSlugLink.data?.slug}
-                size={168}
-                level={"L"}
-              />
-            </div>
-            <Button
-              title="Download as image"
-              type="common"
-              style={{ marginTop: "1rem" }}
-              onClick={() =>
-                downloadQRSvgAsPNG(createSlugLink.data?.slug as string)
-              }
+        <Modal clickRef={clickRef} onClose={() => setVisible(false)}>
+          <div className="justify-center">
+            <QRCode
+              id="qrcode"
+              value={baseUrl() + "/" + createSlugLink.data?.slug}
+              size={168}
+              level={"L"}
             />
-            <div
-              className="modal__closeWrapper"
-              onClick={() => setVisible(false)}
-            >
-              <svg
-                className="modal__closeIcon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-              >
-                <path d="M6.414 5A1 1 0 1 0 5 6.414L10.586 12 5 17.586A1 1 0 1 0 6.414 19L12 13.414 17.586 19A1 1 0 1 0 19 17.586L13.414 12 19 6.414A1 1 0 1 0 17.586 5L12 10.586 6.414 5Z"></path>
-              </svg>
-            </div>
           </div>
+          <Button
+            title="Download as image"
+            type="common"
+            style={{ marginTop: "1rem" }}
+            onClick={() =>
+              downloadQRSvgAsPNG(createSlugLink.data?.slug as string)
+            }
+          />
         </Modal>
       )}
     </div>
