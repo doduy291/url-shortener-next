@@ -372,6 +372,6 @@ module.exports = {
     "selector-list-comma-newline-after": "always-multi-line",
 
     /* Order styles */
-    "order/properties-order": [propertyOrder],
+    "order/properties-order": propertyOrder,
   },
 };

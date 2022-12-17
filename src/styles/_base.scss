@@ -33,6 +33,11 @@ textarea {
   outline: 0;
 }
 
+/* stylelint-disable-next-line selector-id-pattern */
+#__next {
+  height: 100%;
+}
+
 .justify-center {
   display: flex;
   justify-content: center;
